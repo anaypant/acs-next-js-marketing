@@ -102,16 +102,27 @@ export default function SolutionsPage() {
     "Intelligent Insights",
   ]
   const marketingFeatures = [
-    "Multi-Channel Campaign Management",
-    "Audience Targeting & Segmentation",
-    "Performance Analytics & Optimization",
-    "Automated Content Generation",
+    "AI-powered campaign creation",
+    "Automated content generation",
+    "Multi-channel distribution",
+    "Real-time performance tracking",
+    "Continuous optimization",
+    "Budget allocation",
   ]
   const leadScoringFeatures = [
     "Behavioral Analysis",
     "Engagement Tracking",
     "Conversion Probability Scoring",
     "Priority-Based Lead Routing",
+  ]
+
+  const insightFeatures = [
+    "Real-time performance metrics",
+    "Lead quality scoring",
+    "Conversion rate analysis",
+    "Campaign ROI tracking",
+    "Market trend insights",
+    "Competitive analysis",
   ]
 
   return (
@@ -134,7 +145,7 @@ export default function SolutionsPage() {
           <motion.div variants={staggerContainer} initial="initial" animate="animate" className="max-w-4xl mx-auto">
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-6xl font-bold mb-4 tracking-tight"
+              className="text-4xl md:text-6xl font-bold mb-4 tracking-tight italic"
               style={{
                 background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
                 WebkitBackgroundClip: "text",
@@ -228,193 +239,201 @@ export default function SolutionsPage() {
 
         {/* Detailed Sections */}
         <div className="space-y-16 md:space-y-24 pb-16 md:pb-24">
-          {/* Conversation Management */}
-          <section id="conversation" className="max-w-6xl mx-auto px-6 scroll-mt-20">
-            <motion.div
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={staggerContainer}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-            >
-              <div className="order-2 lg:order-1">
+          <div style={{
+            background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
+          }}>
+            {/* Conversation Management */}
+            <section id="conversation" className="py-20 md:py-32">
+              <div className="max-w-6xl mx-auto px-6">
                 <motion.div
-                  variants={fadeInUp}
-                  className="rounded-xl shadow-xl overflow-hidden"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)",
-                    border: "1px solid rgba(10, 90, 47, 0.15)",
-                  }}
+                  initial="initial"
+                  whileInView="animate"
+                  viewport={{ once: true, amount: 0.2 }}
+                  variants={staggerContainer}
+                  className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
                 >
-                  <div
-                    className="border-b p-4"
-                    style={{
-                      background: "linear-gradient(135deg, rgba(248,250,252,0.8) 0%, rgba(241,245,249,0.8) 100%)",
-                      borderColor: "rgba(10, 90, 47, 0.15)",
-                    }}
-                  >
-                    <h3 className="text-lg font-semibold text-gray-800">Recent Conversations</h3>
-                  </div>
-                  <div className="p-4 space-y-3">
-                    {conversations.map((convo, index) => (
+                  <div className="order-2 lg:order-1">
+                    <motion.div
+                      variants={fadeInUp}
+                      className="rounded-xl shadow-xl overflow-hidden"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)",
+                        border: "1px solid rgba(10, 90, 47, 0.15)",
+                      }}
+                    >
                       <div
-                        key={index}
-                        className={`p-3 rounded-lg text-sm transition-all duration-300 ${
-                          index === currentConversation ? "shadow-md transform scale-105" : "hover:shadow-sm"
-                        }`}
+                        className="border-b p-4"
                         style={{
-                          background:
-                            index === currentConversation
-                              ? "linear-gradient(135deg, rgba(241,245,249,0.8) 0%, rgba(226,232,240,0.8) 100%)"
-                              : "rgba(255,255,255,0.8)",
+                          background: "linear-gradient(135deg, rgba(248,250,252,0.8) 0%, rgba(241,245,249,0.8) 100%)",
+                          borderColor: "rgba(10, 90, 47, 0.15)",
                         }}
                       >
-                        <div className="flex justify-between items-center mb-1">
-                          <span className="font-medium text-gray-800">{convo.lead}</span>
-                          <span
-                            className="text-white px-2 py-0.5 rounded-full text-xs font-medium"
-                            style={{ background: convo.stageColor }}
-                          >
-                            {convo.stage}
-                          </span>
-                        </div>
-                        <p className="text-gray-600 truncate">{convo.message}</p>
+                        <h3 className="text-lg font-semibold text-gray-800">Recent Conversations</h3>
                       </div>
-                    ))}
+                      <div className="p-4 space-y-3">
+                        {conversations.map((convo, index) => (
+                          <div
+                            key={index}
+                            className={`p-3 rounded-lg text-sm transition-all duration-300 ${
+                              index === currentConversation ? "shadow-md transform scale-105" : "hover:shadow-sm"
+                            }`}
+                            style={{
+                              background:
+                                index === currentConversation
+                                  ? "linear-gradient(135deg, rgba(241,245,249,0.8) 0%, rgba(226,232,240,0.8) 100%)"
+                                  : "rgba(255,255,255,0.8)",
+                            }}
+                          >
+                            <div className="flex justify-between items-center mb-1">
+                              <span className="font-medium text-gray-800">{convo.lead}</span>
+                              <span
+                                className="text-white px-2 py-0.5 rounded-full text-xs font-medium"
+                                style={{ background: convo.stageColor }}
+                              >
+                                {convo.stage}
+                              </span>
+                            </div>
+                            <p className="text-gray-600 truncate">{convo.message}</p>
+                          </div>
+                        ))}
+                      </div>
+                      <div
+                        className="flex justify-center items-center gap-3 p-4 border-t"
+                        style={{
+                          background: "linear-gradient(135deg, rgba(248,250,252,0.8) 0%, rgba(241,245,249,0.8) 100%)",
+                          borderColor: "rgba(10, 90, 47, 0.15)",
+                        }}
+                      >
+                        <button
+                          onClick={() =>
+                            setCurrentConversation((p) => (p - 1 + conversations.length) % conversations.length)
+                          }
+                          className="p-1.5 rounded-full transition-all duration-300 hover:scale-110"
+                          style={{
+                            background: "linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%)",
+                            border: "1px solid rgba(10, 90, 47, 0.2)",
+                          }}
+                        >
+                          <ChevronLeft size={16} />
+                        </button>
+                        <div className="text-xs font-medium text-gray-500">
+                          {currentConversation + 1} / {conversations.length}
+                        </div>
+                        <button
+                          onClick={() => setCurrentConversation((p) => (p + 1) % conversations.length)}
+                          className="p-1.5 rounded-full transition-all duration-300 hover:scale-110"
+                          style={{
+                            background: "linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%)",
+                            border: "1px solid rgba(10, 90, 47, 0.2)",
+                          }}
+                        >
+                          <ChevronRight size={16} />
+                        </button>
+                      </div>
+                    </motion.div>
                   </div>
-                  <div
-                    className="flex justify-center items-center gap-3 p-4 border-t"
-                    style={{
-                      background: "linear-gradient(135deg, rgba(248,250,252,0.8) 0%, rgba(241,245,249,0.8) 100%)",
-                      borderColor: "rgba(10, 90, 47, 0.15)",
-                    }}
-                  >
-                    <button
-                      onClick={() =>
-                        setCurrentConversation((p) => (p - 1 + conversations.length) % conversations.length)
-                      }
-                      className="p-1.5 rounded-full transition-all duration-300 hover:scale-110"
-                      style={{
-                        background: "linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%)",
-                        border: "1px solid rgba(10, 90, 47, 0.2)",
-                      }}
-                    >
-                      <ChevronLeft size={16} />
-                    </button>
-                    <div className="text-xs font-medium text-gray-500">
-                      {currentConversation + 1} / {conversations.length}
-                    </div>
-                    <button
-                      onClick={() => setCurrentConversation((p) => (p + 1) % conversations.length)}
-                      className="p-1.5 rounded-full transition-all duration-300 hover:scale-110"
-                      style={{
-                        background: "linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%)",
-                        border: "1px solid rgba(10, 90, 47, 0.2)",
-                      }}
-                    >
-                      <ChevronRight size={16} />
-                    </button>
-                  </div>
+                  <motion.div variants={fadeInUp} className="order-1 lg:order-2">
+                    <h2 className="text-4xl font-bold text-white mb-8 italic">Conversation Management</h2>
+                    <p className="text-white mb-10 text-xl leading-relaxed">
+                      Engage leads 24/7, handle routine questions, and intelligently escalate to a realtor when the time is
+                      right—all powered by AI.
+                    </p>
+                    <ul className="space-y-6 mb-8">
+                      {conversationFeatures.map((f) => (
+                        <li key={f} className="flex items-center gap-4">
+                          <CheckCircle2 className="text-white w-6 h-6 flex-shrink-0" />
+                          <span className="text-white text-xl">{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
                 </motion.div>
               </div>
-              <motion.div variants={fadeInUp} className="order-1 lg:order-2">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">Conversation Management</h2>
-                <p className="text-gray-600 mb-6 text-lg leading-relaxed">
-                  Engage leads 24/7, handle routine questions, and intelligently escalate to a realtor when the time is
-                  right—all powered by AI.
-                </p>
-                <ul className="space-y-3 mb-8">
-                  {conversationFeatures.map((f) => (
-                    <li key={f} className="flex items-center gap-3">
-                      <CheckCircle2 className="text-slate-600 w-5 h-5 flex-shrink-0" />
-                      <span className="text-gray-700">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            </motion.div>
-          </section>
+            </section>
 
-          {/* Marketing Optimization */}
-          <section id="marketing" className="max-w-6xl mx-auto px-6 scroll-mt-20">
-            <motion.div
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={staggerContainer}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-            >
-              <motion.div variants={fadeInUp}>
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">Marketing Optimization</h2>
-                <p className="text-gray-600 mb-6 text-lg leading-relaxed">
-                  Provide minimal inputs—like location and budget—and let our AI create, deploy, and continuously
-                  optimize a full marketing campaign.
-                </p>
-                <ul className="space-y-3 mb-8">
-                  {marketingFeatures.map((f) => (
-                    <li key={f} className="flex items-center gap-3">
-                      <CheckCircle2 className="text-slate-600 w-5 h-5 flex-shrink-0" />
-                      <span className="text-gray-700">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-              <motion.div
-                variants={fadeInUp}
-                className="rounded-xl shadow-xl p-6"
-                style={{
-                  background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)",
-                  border: "1px solid rgba(10, 90, 47, 0.15)",
-                }}
-              >
-                <h3 className="text-lg font-semibold text-gray-800 text-center mb-6">Lead Generation Workflow</h3>
-                <div className="flex items-center justify-center gap-4">
-                  <div className="flex flex-col items-center gap-4">
-                    <div
-                      className="w-14 h-14 rounded-full flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110"
-                      style={{ background: "linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)" }}
-                    >
-                      <Facebook size={28} className="text-blue-600" />
-                    </div>
-                    <div
-                      className="w-14 h-14 rounded-full flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110"
-                      style={{ background: "linear-gradient(135deg, #fef2f2 0%, #fecaca 100%)" }}
-                    >
-                      <Briefcase size={28} className="text-red-600" />
-                    </div>
-                  </div>
-                  <div className="flex-shrink-0 w-px bg-gray-200 h-24"></div>
-                  <div
-                    className="w-24 h-24 rounded-full flex items-center justify-center shadow-lg text-center font-semibold text-sm leading-tight text-white transition-transform duration-300 hover:scale-110"
+            {/* Marketing Optimization */}
+            <section id="marketing" className="py-20 md:py-32">
+              <div className="max-w-6xl mx-auto px-6">
+                <motion.div
+                  initial="initial"
+                  whileInView="animate"
+                  viewport={{ once: true, amount: 0.2 }}
+                  variants={staggerContainer}
+                  className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                >
+                  <motion.div variants={fadeInUp}>
+                    <h2 className="text-4xl font-bold text-white mb-8 italic">Marketing Optimization</h2>
+                    <p className="text-white mb-10 text-xl leading-relaxed">
+                      Provide minimal inputs—like location and budget—and let our AI create, deploy, and continuously
+                      optimize a full marketing campaign.
+                    </p>
+                    <ul className="space-y-6 mb-8">
+                      {marketingFeatures.map((f) => (
+                        <li key={f} className="flex items-center gap-4">
+                          <CheckCircle2 className="text-white w-6 h-6 flex-shrink-0" />
+                          <span className="text-white text-xl">{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                  <motion.div
+                    variants={fadeInUp}
+                    className="rounded-xl shadow-xl p-6"
                     style={{
-                      background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
+                      background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)",
+                      border: "1px solid rgba(10, 90, 47, 0.15)",
                     }}
                   >
-                    <p>
-                      AI
-                      <br />
-                      Engine
-                    </p>
-                  </div>
-                  <div className="flex-shrink-0 w-px bg-gray-200 h-24"></div>
-                  <div className="flex flex-col items-center gap-4">
-                    <div
-                      className="w-14 h-14 rounded-full flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110"
-                      style={{ background: "linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%)" }}
-                    >
-                      <Twitter size={28} className="text-sky-600" />
+                    <h3 className="text-lg font-semibold text-gray-800 text-center mb-6">Lead Generation Workflow</h3>
+                    <div className="flex items-center justify-center gap-4">
+                      <div className="flex flex-col items-center gap-4">
+                        <div
+                          className="w-14 h-14 rounded-full flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110"
+                          style={{ background: "linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)" }}
+                        >
+                          <Facebook size={28} className="text-blue-600" />
+                        </div>
+                        <div
+                          className="w-14 h-14 rounded-full flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110"
+                          style={{ background: "linear-gradient(135deg, #fef2f2 0%, #fecaca 100%)" }}
+                        >
+                          <Briefcase size={28} className="text-red-600" />
+                        </div>
+                      </div>
+                      <div className="flex-shrink-0 w-px bg-gray-200 h-24"></div>
+                      <div
+                        className="w-24 h-24 rounded-full flex items-center justify-center shadow-lg text-center font-semibold text-sm leading-tight text-white transition-transform duration-300 hover:scale-110"
+                        style={{
+                          background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
+                        }}
+                      >
+                        <p>
+                          AI
+                          <br />
+                          Engine
+                        </p>
+                      </div>
+                      <div className="flex-shrink-0 w-px bg-gray-200 h-24"></div>
+                      <div className="flex flex-col items-center gap-4">
+                        <div
+                          className="w-14 h-14 rounded-full flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110"
+                          style={{ background: "linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%)" }}
+                        >
+                          <Twitter size={28} className="text-sky-600" />
+                        </div>
+                        <div
+                          className="w-14 h-14 rounded-full flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110"
+                          style={{ background: "linear-gradient(135deg, #ede7f6 0%, #d1c4e9 100%)" }}
+                        >
+                          <Linkedin size={28} className="text-blue-800" />
+                        </div>
+                      </div>
                     </div>
-                    <div
-                      className="w-14 h-14 rounded-full flex items-center justify-center shadow-md transition-transform duration-300 hover:scale-110"
-                      style={{ background: "linear-gradient(135deg, #ede7f6 0%, #d1c4e9 100%)" }}
-                    >
-                      <Linkedin size={28} className="text-blue-800" />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          </section>
+                  </motion.div>
+                </motion.div>
+              </div>
+            </section>
+          </div>
 
           {/* Lead Scoring */}
           <section id="scoring" className="max-w-6xl mx-auto px-6 scroll-mt-20">
@@ -521,7 +540,7 @@ export default function SolutionsPage() {
                 </motion.div>
               </div>
               <motion.div variants={fadeInUp} className="order-1 lg:order-2">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">Automated Lead Scoring</h2>
+                <h2 className="text-3xl font-bold text-gray-800 mb-4 italic">Automated Lead Scoring</h2>
                 <p className="text-gray-600 mb-6 text-lg leading-relaxed">
                   Our AI automatically evaluates and ranks leads on their likelihood to convert, helping you focus on
                   the most promising opportunities.
@@ -547,7 +566,7 @@ export default function SolutionsPage() {
           }}
         >
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Transform Your Business?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 italic">Ready to Transform Your Business?</h2>
             <p className="text-green-100 mb-8 text-lg leading-relaxed">
               Join thousands of real estate professionals leveraging our AI tools to stay ahead of the competition.
             </p>
