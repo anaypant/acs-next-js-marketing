@@ -229,6 +229,7 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [apiError, setApiError] = useState("")
   const [apiSuccess, setApiSuccess] = useState(false)
+  const [emailDetails, setEmailDetails] = useState<{ messageId?: string; response?: string }>({})
 
   const validateForm = () => {
     let valid = true
@@ -285,15 +286,45 @@ export default function ContactPage() {
     e.preventDefault()
     setApiError("")
     setApiSuccess(false)
+    setEmailDetails({})
+    
     if (validateForm()) {
       setIsSubmitting(true)
       try {
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 2000))
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+          }),
+        })
+
+        const data = await response.json()
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to send message')
+        }
+
         setIsSubmitted(true)
         setApiSuccess(true)
+        setEmailDetails({
+          messageId: data.messageId,
+          response: data.response
+        })
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          isDemoRequest: false,
+        })
       } catch (err) {
-        setApiError("Failed to send message. Please try again later.")
+        setApiError(err instanceof Error ? err.message : "Failed to send message. Please try again later.")
       } finally {
         setIsSubmitting(false)
       }
@@ -415,9 +446,21 @@ export default function ContactPage() {
                       <Icons.CheckCircle className="h-8 w-8 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-800 mb-4">Message Sent Successfully!</h3>
-                    <p className="text-gray-600 mb-8 leading-relaxed">
+                    <p className="text-gray-600 mb-4 leading-relaxed">
                       Thank you for reaching out. We'll get back to you within 24 hours.
                     </p>
+                    {emailDetails.messageId && (
+                      <div className="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <p className="text-sm text-gray-600">
+                          <span className="font-medium">Message ID:</span> {emailDetails.messageId}
+                        </p>
+                        {emailDetails.response && (
+                          <p className="text-sm text-gray-600 mt-1">
+                            <span className="font-medium">Server Response:</span> {emailDetails.response}
+                          </p>
+                        )}
+                      </div>
+                    )}
                     <Button onClick={() => setIsSubmitted(false)} size="lg">
                       Send Another Message
                     </Button>
