@@ -1,78 +1,76 @@
-/**
- * File: app/Navbar.tsx
- * Purpose: Renders the main navigation bar with responsive design, animated hover effects, and authentication links.
- * Author: Alejo Cagliolo
- * Date: 5/25/25
- * Version: 1.0.0
- */
-
 "use client"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { useState } from "react"
 
-/**
- * Navbar Component
- * Main navigation component with responsive design and interactive elements
- * 
- * Features:
- * - Responsive navigation menu
- * - Animated hover effects using Framer Motion
- * - Authentication links (Sign in/Get Started)
- * - Mobile-friendly design
- * - Sticky positioning
- * - Gradient text and button effects
- * 
- * State Management:
- * - Tracks hovered navigation items
- * - Manages responsive menu state
- * 
- * @returns {JSX.Element} Complete navigation bar with all interactive elements
- */
 const Navbar = () => {
-  // Track which navigation item is currently hovered
   const [hovered, setHovered] = useState<string | null>(null)
 
+  const navItems = [
+    { name: "Home", href: "/marketing" },
+    { name: "Solutions", href: "/solutions" },
+    { name: "Contact", href: "/contact" },
+  ]
+
   return (
-    <nav className="bg-white/90 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50 shadow-sm">
-      <div className="max-w-[1400px] mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo/Brand link with gradient hover effect */}
-          <Link href="/marketing" className="text-2xl font-bold relative group">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0A2F1F] to-[#0A2F1F] group-hover:from-[#0A2F1F] group-hover:to-[#34A65F] transition-all duration-500">
+    <nav
+      className="sticky top-0 z-50 border-b shadow-lg"
+      style={{
+        background:
+          "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 50%, rgba(241,245,249,0.95) 100%)",
+        backdropFilter: "blur(20px)",
+        borderColor: "rgba(10, 90, 47, 0.15)",
+      }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo/Brand link */}
+          <Link href="/marketing" className="text-2xl font-bold relative group flex items-center">
+            <span
+              className="transition-all duration-500 ease-in-out transform group-hover:scale-105"
+              style={{
+                background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
               ACS
             </span>
           </Link>
 
-          {/* Main navigation links with hover animations - Centered */}
-          <div className="flex-1 flex justify-center">
-            <div className="flex items-center space-x-1 bg-[#f8faf9] rounded-full p-1.5 shadow-inner">
-              {["Home", "Solutions", "Contact"].map((item, index) => {
-                const href = item === "Home" ? "/marketing" : `/${item.toLowerCase().replace(" ", "-")}`
-                return (
-                  <Link
-                    key={index}
-                    href={href}
-                    className="relative px-6 py-2 rounded-full transition-all duration-300"
-                    onMouseEnter={() => setHovered(item)}
-                    onMouseLeave={() => setHovered(null)}
-                  >
-                    <span className="relative z-10 transition-colors duration-300 text-gray-600 hover:text-[#0A2F1F] font-medium">
-                      {item}
-                    </span>
-                    {hovered === item && (
-                      <motion.span
-                        className="absolute inset-0 bg-white rounded-full shadow-sm"
-                        layoutId="navBackground"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2, ease: "easeInOut" }}
-                      />
-                    )}
-                  </Link>
-                )
-              })}
+          {/* Main navigation links - Centered */}
+          <div className="flex-1 flex items-center justify-center">
+            <div className="flex items-center space-x-2">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="relative px-6 py-2.5 rounded-lg transition-all duration-300 ease-in-out group"
+                  onMouseEnter={() => setHovered(item.name)}
+                  onMouseLeave={() => setHovered(null)}
+                  style={{
+                    background:
+                      hovered === item.name ? "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)" : "transparent",
+                    color: hovered === item.name ? "#ffffff" : "#374151",
+                  }}
+                >
+                  <span className="relative z-10 font-medium transition-all duration-300">{item.name}</span>
+                  {hovered === item.name && (
+                    <motion.div
+                      className="absolute inset-0 rounded-lg"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(10, 90, 47, 0.1) 0%, rgba(21, 122, 66, 0.1) 100%)",
+                      }}
+                      layoutId="navHover"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                </Link>
+              ))}
             </div>
           </div>
 
@@ -80,7 +78,19 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-6 py-2 rounded-full bg-gradient-to-r from-[#0a5a2f] to-[#157a42] text-white font-medium shadow-sm hover:shadow-md transition-all duration-300 hover:from-[#157a42] hover:to-[#0a5a2f]"
+              className="inline-flex items-center justify-center px-6 py-2.5 rounded-full font-semibold shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 focus:ring-offset-white text-white"
+              style={{
+                background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
+                boxShadow: "0 4px 15px rgba(10, 90, 47, 0.4)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "linear-gradient(135deg, #157a42 0%, #22c55e 100%)"
+                e.currentTarget.style.boxShadow = "0 8px 25px rgba(10, 90, 47, 0.6)"
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)"
+                e.currentTarget.style.boxShadow = "0 4px 15px rgba(10, 90, 47, 0.4)"
+              }}
             >
               Get a Demo
             </Link>
@@ -92,15 +102,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-
-/**
- * Change Log:
- * 5/25/25 - Initial version
- * - Created responsive navigation bar
- * - Implemented hover animations with Framer Motion
- * - Added authentication links
- * - Integrated gradient effects
- * - Enhanced mobile responsiveness
- * - Added sticky positioning
- * - Implemented backdrop blur effect
- */

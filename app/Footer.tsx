@@ -1,158 +1,167 @@
-/**
- * File: app/Footer.tsx
- * Purpose: Renders the application footer with navigation links, company information, and legal resources.
- * Author: Alejo Cagliolo
- * Date: 5/25/25
- * Version: 1.0.0
- */
+"use client"
 
 import Link from "next/link"
+import { Linkedin } from "lucide-react"
 
-/**
- * Footer Component
- * Application footer with responsive grid layout and navigation sections
- * 
- * Features:
- * - Responsive grid layout
- * - Company branding
- * - Navigation sections (Solutions, Company, Legal)
- * - Dynamic copyright year
- * - Hover effects on links
- * - Semantic HTML structure
- * 
- * Sections:
- * - Brand section with company description
- * - Solutions links for product features
- * - Company information and resources
- * - Legal documents and policies
- * 
- * @returns {JSX.Element} Complete footer with all navigation sections and copyright
- */
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-200 py-12">
-      <div className="container mx-auto px-4">
-        {/* Main footer content in responsive grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand section with logo and description */}
-          <div>
-            <Link href="/marketing" className="text-2xl font-bold text-[#127954]">
+    <footer
+      className="border-t"
+      style={{
+        background: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #f8fafc 100%)",
+        borderColor: "rgba(10, 90, 47, 0.15)",
+      }}
+    >
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Brand section */}
+          <div className="md:col-span-2 lg:col-span-1">
+            <Link
+              href="/marketing"
+              className="text-2xl font-bold transition-all duration-300 ease-in-out transform hover:scale-105"
+              style={{
+                background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
               ACS
             </Link>
-            <p className="mt-2 text-gray-600 font-semibold">AI-powered solutions for real estate professionals</p>
-            {/* Connect with us section */}
+            <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+              AI-powered solutions for real estate professionals. Bridging the technology gap for small businesses.
+            </p>
             <div className="mt-6">
-              <span className="block font-semibold text-gray-800 mb-2">Connect with us</span>
+              <span className="block text-sm font-medium text-gray-800 mb-2">Connect with us</span>
               <div className="flex items-center gap-3">
                 <a
                   href="https://www.linkedin.com/company/automated-consultancy-services/posts/?feedView=all"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#e6f5ec] hover:bg-[#127954] transition-colors"
+                  className="group inline-flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 hover:shadow-lg"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(10, 90, 47, 0.1) 0%, rgba(21, 122, 66, 0.1) 100%)",
+                    border: "2px solid rgba(10, 90, 47, 0.3)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)"
+                    e.currentTarget.style.borderColor = "#0a5a2f"
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background =
+                      "linear-gradient(135deg, rgba(10, 90, 47, 0.1) 0%, rgba(21, 122, 66, 0.1) 100%)"
+                    e.currentTarget.style.borderColor = "rgba(10, 90, 47, 0.3)"
+                  }}
                   aria-label="LinkedIn"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-[#127954] group-hover:text-white transition-colors">
-                    <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm15.5 10.28h-3v-4.5c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.17-1.73 2.39v4.58h-3v-9h2.88v1.23h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.59v4.72z" />
-                  </svg>
+                  <Linkedin className="w-5 h-5 text-slate-700 group-hover:text-white transition-colors duration-300" />
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Main navigation section */}
+          {/* Navigation section */}
           <div>
-            <h3 className="font-semibold text-gray-800 mb-3">Navigation</h3>
+            <h3
+              className="text-sm font-semibold tracking-wider uppercase mb-3"
+              style={{
+                background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Navigation
+            </h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="/marketing" className="text-gray-600 hover:text-[#127954] font-semibold">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/solutions" className="text-gray-600 hover:text-[#127954] font-semibold">
-                  Solutions
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-gray-600 hover:text-[#127954] font-semibold">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-gray-600 hover:text-[#127954] font-semibold">
-                  Get Started
-                </Link>
-              </li>
+              {[
+                { name: "Home", href: "/marketing" },
+                { name: "Solutions", href: "/solutions" },
+                { name: "Contact", href: "/contact" },
+                { name: "Get Started", href: "/contact" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-gray-600 font-medium transition-all duration-300 ease-in-out hover:text-slate-800 hover:translate-x-1 transform inline-block"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Solutions section */}
           <div>
-            <h3 className="font-semibold text-gray-800 mb-3">Solutions</h3>
-            <div className="space-y-2">
-              <Link href="/solutions" className="text-gray-600 hover:text-[#0e6537] transition-colors">
-                Solutions
-              </Link>
-              <Link href="/solutions#analytics" className="text-gray-600 hover:text-[#0e6537] transition-colors">
-                Analytics
-              </Link>
-              <Link href="/solutions#conversation" className="text-gray-600 hover:text-[#0e6537] transition-colors">
-                Conversation Management
-              </Link>
-              <Link href="/solutions#marketing" className="text-gray-600 hover:text-[#0e6537] transition-colors">
-                Marketing Optimization
-              </Link>
-              <Link href="/solutions#scoring" className="text-gray-600 hover:text-[#0e6537] transition-colors">
-                Lead Scoring
-              </Link>
-            </div>
+            <h3
+              className="text-sm font-semibold tracking-wider uppercase mb-3"
+              style={{
+                background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Solutions
+            </h3>
+            <ul className="space-y-2">
+              {[
+                { name: "Overview", href: "/solutions" },
+                { name: "Analytics", href: "/solutions#analytics" },
+                { name: "Conversation Management", href: "/solutions#conversation" },
+                { name: "Marketing Optimization", href: "/solutions#marketing" },
+                { name: "Lead Scoring", href: "/solutions#scoring" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-gray-600 font-medium transition-all duration-300 ease-in-out hover:text-slate-800 hover:translate-x-1 transform inline-block"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Company info section */}
           <div>
-            <h3 className="font-semibold text-gray-800 mb-3">Company</h3>
+            <h3
+              className="text-sm font-semibold tracking-wider uppercase mb-3"
+              style={{
+                background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Company
+            </h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="/contact" className="text-gray-600 hover:text-[#127954] font-semibold">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="text-gray-600 hover:text-[#127954] font-semibold">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="text-gray-600 hover:text-[#127954] font-semibold">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/cookies" className="text-gray-600 hover:text-[#127954] font-semibold">
-                  Cookie Policy
-                </Link>
-              </li>
+              {[
+                { name: "Contact Us", href: "/contact" },
+                { name: "Terms of Service", href: "/terms" },
+                { name: "Privacy Policy", href: "/privacy" },
+                { name: "Cookie Policy", href: "/cookies" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-gray-600 font-medium transition-all duration-300 ease-in-out hover:text-slate-800 hover:translate-x-1 transform inline-block"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        {/* Copyright section with dynamic year */}
-        <div className="mt-8 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm font-semibold">
-          <p>&copy; {new Date().getFullYear()} ACS. All rights reserved.</p>
+        <div className="mt-10 pt-8 text-center border-t" style={{ borderColor: "rgba(10, 90, 47, 0.15)" }}>
+          <p className="text-xs text-gray-500">&copy; {new Date().getFullYear()} ACS. All rights reserved.</p>
         </div>
       </div>
     </footer>
   )
 }
-
-/**
- * Change Log:
- * 5/25/25 - Initial version
- * - Created responsive footer layout
- * - Added navigation sections
- * - Implemented company branding
- * - Added legal resources
- * - Integrated dynamic copyright year
- * - Enhanced link hover effects
- * - Improved semantic structure
- */ 
