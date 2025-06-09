@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import config from '@/app/config';
 
 export async function POST(req: NextRequest) {
   console.log('Contact API: Request received');
@@ -10,22 +11,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Missing required fields.' }, { status: 400 });
   }
 
-  // Verify environment variables
-  if (!process.env.ZOHO_EMAIL_USER || !process.env.ZOHO_EMAIL_PASS) {
-    console.error('Contact API: Missing email credentials');
-    return NextResponse.json({ error: 'Email service configuration error.' }, { status: 500 });
-  }
-
   console.log('Contact API: Creating transporter with Zoho credentials');
-  // Configure nodemailer SMTP transport for Zoho
+  // Configure nodemailer SMTP transport using config
   const transporter = nodemailer.createTransport({
-    host: 'smtp.zoho.com',
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.ZOHO_EMAIL_USER,
-      pass: process.env.ZOHO_EMAIL_PASS,
-    },
+    ...config.email.smtp,
     debug: true, // Enable debug logging
     logger: true, // Enable logger
   });
@@ -42,15 +31,15 @@ export async function POST(req: NextRequest) {
 
   try {
     console.log('Contact API: Sending email', {
-      from: process.env.ZOHO_EMAIL_USER,
-      to: 'support@automatedconsultancy.com',
-      subject: `[ACS Contact] ${subject}`,
+      from: config.email.from.address,
+      to: config.email.to,
+      subject: `[${config.site.name} Contact] ${subject}`,
     });
 
     const info = await transporter.sendMail({
-      from: `ACS Contact Form <${process.env.ZOHO_EMAIL_USER}>`,
-      to: 'support@automatedconsultancy.com',
-      subject: `[ACS Contact] ${subject}`,
+      from: `${config.email.from.name} <${config.email.from.address}>`,
+      to: config.email.to,
+      subject: `[${config.site.name} Contact] ${subject}`,
       replyTo: email,
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
       html: `<p><strong>Name:</strong> ${name}<br/><strong>Email:</strong> ${email}</p><p>${message.replace(/\n/g, '<br/>')}</p>`,
