@@ -366,43 +366,39 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative py-20 text-center overflow-hidden">
+      <section className="relative py-10 sm:py-16 text-center overflow-hidden" style={{
+        background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
+      }}>
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div
-            className="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-10 animate-pulse"
+            className="absolute top-0 left-1/4 w-56 sm:w-80 h-56 sm:h-80 rounded-full blur-3xl opacity-10 animate-pulse"
             style={{
-              background: "radial-gradient(circle, rgba(10, 90, 47, 0.4) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%)",
               animationDuration: "8s",
             }}
           ></div>
           <div
-            className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-10 animate-pulse"
+            className="absolute bottom-0 right-1/4 w-48 sm:w-64 h-48 sm:h-64 rounded-full blur-3xl opacity-10 animate-pulse"
             style={{
-              background: "radial-gradient(circle, rgba(21, 122, 66, 0.4) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%)",
               animationDuration: "10s",
               animationDelay: "2s",
             }}
           ></div>
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6">
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
           <motion.h1
-            className="text-5xl md:text-6xl font-bold mb-6 tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 tracking-tight text-white italic"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            style={{
-              background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
           >
             Get in Touch
           </motion.h1>
           <motion.p
-            className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg text-white max-w-2xl mx-auto leading-relaxed px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -413,9 +409,9 @@ export default function ContactPage() {
       </section>
 
       {/* Main Content */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+      <section className="py-10 sm:py-14">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 items-start">
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -423,11 +419,11 @@ export default function ContactPage() {
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               <div
-                className="rounded-2xl p-8 shadow-xl border"
+                className="rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border"
                 style={{
                   background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)",
                   borderColor: "rgba(10, 90, 47, 0.15)",
-                  boxShadow: "0 20px 40px rgba(10, 90, 47, 0.1)",
+                  boxShadow: "0 15px 30px rgba(10, 90, 47, 0.1)",
                 }}
               >
                 {isSubmitted ? (
@@ -483,7 +479,7 @@ export default function ContactPage() {
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="grid md:grid-cols-2 gap-6">
+                      <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
                         <div>
                           <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
                             Full Name
@@ -515,7 +511,7 @@ export default function ContactPage() {
 
                       {/* Demo Request Checkbox */}
                       <div
-                        className="p-6 rounded-xl border-2 border-dashed transition-all duration-300"
+                        className="p-4 sm:p-6 rounded-xl border-2 border-dashed transition-all duration-300"
                         style={{
                           borderColor: formData.isDemoRequest ? "#0a5a2f" : "rgba(10, 90, 47, 0.2)",
                           background: formData.isDemoRequest
@@ -612,51 +608,51 @@ export default function ContactPage() {
 
             {/* Contact Info & Team */}
             <motion.div
-              className="space-y-8"
+              className="space-y-6 sm:space-y-8"
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             >
               {/* Contact Information */}
               <div
-                className="rounded-2xl p-8 shadow-xl border"
+                className="rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border"
                 style={{
                   background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)",
                   borderColor: "rgba(10, 90, 47, 0.15)",
-                  boxShadow: "0 20px 40px rgba(10, 90, 47, 0.1)",
+                  boxShadow: "0 15px 30px rgba(10, 90, 47, 0.1)",
                 }}
               >
-                <h3 className="text-xl font-bold text-gray-800 mb-6">Contact Information</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4 sm:mb-6 italic">Contact Information</h3>
 
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4">
+                <div className="space-y-4 sm:space-y-6">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     <div
-                      className="w-12 h-12 rounded-lg flex items-center justify-center"
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center"
                       style={{
                         background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
                       }}
                     >
-                      <Icons.Mail className="h-6 w-6 text-white" />
+                      <Icons.Mail className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-800">Email</h4>
-                      <p className="text-gray-600">support@automatedconsultancy.com</p>
+                      <h4 className="font-semibold text-gray-800 text-sm sm:text-base">Email</h4>
+                      <p className="text-gray-600 text-xs sm:text-sm">support@automatedconsultancy.com</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-gray-200">
-                  <h4 className="font-semibold text-gray-800 mb-4">Follow us</h4>
+                <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-200">
+                  <h4 className="font-semibold text-gray-800 mb-3 sm:mb-4 text-sm sm:text-base italic">Follow us</h4>
                   <a
                     href="https://www.linkedin.com/company/automated-consultancy-services/posts/?feedView=all"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 hover:shadow-lg transform hover:scale-105"
+                    className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-white transition-all duration-300 hover:shadow-lg transform hover:scale-105 text-sm sm:text-base"
                     style={{
                       background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
                     }}
                   >
-                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.28c-.97 0-1.75-.79-1.75-.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm15.5 10.28h-3v-4.5c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.17-1.73 2.39v4.58h-3v-9h2.88v1.23h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.59v4.72z" />
                     </svg>
                     LinkedIn
@@ -666,19 +662,19 @@ export default function ContactPage() {
 
               {/* Team Section */}
               <div
-                className="rounded-2xl p-8 shadow-xl border"
+                className="rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border"
                 style={{
                   background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)",
                   borderColor: "rgba(10, 90, 47, 0.15)",
-                  boxShadow: "0 20px 40px rgba(10, 90, 47, 0.1)",
+                  boxShadow: "0 15px 30px rgba(10, 90, 47, 0.1)",
                 }}
               >
-                <h3 className="text-xl font-bold text-gray-800 mb-6">Our Team</h3>
-                <div className="space-y-4">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4 sm:mb-6">Our Team</h3>
+                <div className="space-y-3 sm:space-y-4">
                   {teamMembers.map((member, index) => (
                     <motion.div
                       key={index}
-                      className="flex items-center gap-4 p-4 rounded-lg transition-all duration-300 hover:shadow-md"
+                      className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg transition-all duration-300 hover:shadow-md"
                       style={{
                         background: "linear-gradient(135deg, rgba(248,250,252,0.6) 0%, rgba(241,245,249,0.6) 100%)",
                       }}
@@ -686,7 +682,7 @@ export default function ContactPage() {
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     >
                       <div
-                        className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-white"
+                        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-white text-sm sm:text-base"
                         style={{
                           background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
                         }}
@@ -696,12 +692,12 @@ export default function ContactPage() {
                           .map((n) => n[0])
                           .join("")}
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2">
-                          <h4 className="font-semibold text-gray-800">{member.name}</h4>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-1 sm:gap-2">
+                          <h4 className="font-semibold text-gray-800 text-sm sm:text-base truncate">{member.name}</h4>
                           {member.isCoFounder && (
                             <span
-                              className="px-2 py-1 text-xs font-semibold rounded-full text-white"
+                              className="px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-semibold rounded-full text-white whitespace-nowrap"
                               style={{
                                 background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
                               }}
@@ -710,7 +706,7 @@ export default function ContactPage() {
                             </span>
                           )}
                         </div>
-                        <p className="text-sm text-gray-600">{member.role}</p>
+                        <p className="text-xs sm:text-sm text-gray-600 truncate">{member.role}</p>
                       </div>
                     </motion.div>
                   ))}

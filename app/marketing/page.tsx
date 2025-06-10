@@ -91,7 +91,7 @@ export default function MarketingPage() {
           <div className="flex-1 flex flex-col items-start justify-center max-w-xl text-center lg:text-left z-10">
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-5 leading-tight tracking-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-5 leading-tight tracking-tight italic"
               style={{
                 background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
                 WebkitBackgroundClip: "text",
@@ -179,9 +179,6 @@ export default function MarketingPage() {
                   priority
                 />
               </div>
-              <p className="mt-3 text-center text-gray-600 text-xs sm:text-sm font-medium">
-                Unlock the Power of AI for Your Business
-              </p>
             </div>
           </motion.div>
         </motion.section>
@@ -246,8 +243,7 @@ export default function MarketingPage() {
         <section
           className="w-full py-16 md:py-24"
           style={{
-            background:
-              "linear-gradient(135deg, rgba(248,250,252,0.8) 0%, rgba(241,245,249,0.8) 50%, rgba(226,232,240,0.8) 100%)",
+            background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
           }}
         >
           <motion.div
@@ -258,17 +254,11 @@ export default function MarketingPage() {
             className="max-w-3xl mx-auto px-6 text-center"
           >
             <h2
-              className="text-3xl md:text-4xl font-bold mb-6 tracking-tight"
-              style={{
-                background: "linear-gradient(135deg, #0a5a2f 0%, #157a42 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
+              className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-white italic"
             >
               About ACS
             </h2>
-            <div className="space-y-5 text-gray-700 text-base md:text-lg leading-relaxed">
+            <div className="space-y-5 text-white text-base md:text-lg leading-relaxed">
               <p>
                 ACS is an AI consultancy company focused on providing technical solutions to small businesses. We
                 specialize in the real estate and medical/veterinary industries, delivering personalized, hands-on
